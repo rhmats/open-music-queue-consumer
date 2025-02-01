@@ -11,7 +11,7 @@ class PlaylistsService {
       text: `SELECT playlists.id, playlists.name FROM playlists
       LEFT JOIN users ON users.id = playlists.owner
       LEFT JOIN collaborations ON collaborations.playlist_id = playlists.id
-      WHERE playlists.id=$1 AND playlists.owner=$2 OR collaborations.playlist_id=$1
+      WHERE playlists.id=$1 OR collaborations.playlist_id=$1
       GROUP BY playlists.id, users.id`,
       values: [playlistId, getUserPlaylists],
     };

@@ -12,11 +12,11 @@ class Listener {
         message.content.toString()
       );
 
-      const playlists = await this._playlistsService.getPlaylistById(playlistId, getUserPlaylists);
+      const playlist = await this._playlistsService.getPlaylistById(playlistId, getUserPlaylists);
       const songs = await this._playlistsService.getPlaylistSongs(playlistId);
-      playlists.songs = songs;
+      playlist.songs = songs;
       const response = {
-        playlists
+        playlist
       };
 
       const result = await this._mailSender.sendEmail(targetEmail, JSON.stringify(response));
